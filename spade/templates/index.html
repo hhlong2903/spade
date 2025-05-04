@@ -1,9 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Spade</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPADE Results</title>
+    <style>
+        .results-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .result-group {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+        }
+        .result-group h2 {
+            text-align: center;
+        }
+        .result-group table {
+            width: 100%;
+            text-align: center;
+        }
+        .result-group table th, .result-group table td {
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Spade</h1>
+    <h1>SPADE Results</h1>
+
+    <div class="results-container">
+        {% for length, patterns in grouped_results.items() %}
+            <div class="result-group">
+                <h2>{{ length }} Items</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Pattern</th>
+                            <th>Support</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pattern, count in patterns %}
+                            <tr>
+                                <td>{{ pattern }}</td>
+                                <td>{{ count }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
